@@ -11,9 +11,16 @@ public abstract class Pawn : MonoBehaviour
     public Mover mover;
     public Shooter shooter;
     public Health health;
+    public GameObject shellPrefab;
+    public float fireForce;
+    public float damageDone;
+    public float shellLifespan;
+    public float fireRate;
+    protected float secondsPerShot;
     // Start is called before the first frame update
     public virtual void Start()
     {
+        secondsPerShot = 1 / fireRate;
         //get statements
         mover = GetComponent<Mover>();
         shooter = GetComponent<Shooter>();
@@ -30,4 +37,6 @@ public abstract class Pawn : MonoBehaviour
     public abstract void MoveBackward();
     public abstract void RotateClockwise();
     public abstract void RotateCounterClockwise();
+    public abstract void Shoot();
+    public abstract void RotateTowards(Vector3 targetPosition);
 }

@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject tankPawnPrefab;
     public Transform playerSpawnTransform;
     public List<PlayerController> players;
+    public List<AIController> aiPlayers;
     // Start is called before the first frame update
     private void Start()
     {

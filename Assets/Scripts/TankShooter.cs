@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TankShooter : Shooter
-{ 
+{
+    public Transform firepointTransform;
     // Start is called before the first frame update
     public override void Start()
     {
@@ -16,8 +17,21 @@ public class TankShooter : Shooter
         
     }
     //placeholder
-    public override void Shoot()
+    public override void Shoot(GameObject shellPrefab, float fireForce, float damageDone, float lifespan)
     {
-        Debug.Log("Shooting");
+        GameObject newShell = Instantiate(shellPrefab, firepointTransform.position, firepointTransform.rotation) as GameObject;
+        DamageOnHit doh = newShell.GetComponent<DamageOnHit>();
+        if (doh != null)
+        {
+            doh.damageDone = damageDone;
+            doh.owner = GetComponent<Pawn>();
+        }
+        Rigidbody rb = newShell.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.AddForce(firepointTransform.forward * fireForce);
+        }
+        Destroy(newShell, lifespan);
+        
     }
 }
