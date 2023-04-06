@@ -16,7 +16,7 @@ public class TankShooter : Shooter
     {
         
     }
-    //placeholder
+    //function to shoot a shell
     public override void Shoot(GameObject shellPrefab, float fireForce, float damageDone, float lifespan)
     {
         GameObject newShell = Instantiate(shellPrefab, firepointTransform.position, firepointTransform.rotation) as GameObject;
