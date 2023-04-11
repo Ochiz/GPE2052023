@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     //variable declaration
+    public MapGenerator level;
     public static GameManager instance;
     public GameObject playerControllerPrefab;
     public GameObject tankPawnPrefab;
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        level.GenerateMap();
         SpawnPlayer();
     }
     //function to ensure this is the only game manager
