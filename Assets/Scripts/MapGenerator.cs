@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using System;
 
 public class MapGenerator : MonoBehaviour
 {
@@ -9,13 +10,15 @@ public class MapGenerator : MonoBehaviour
     public float roomWidth = 50.0f;
     public float roomHeight = 50.0f;
     private Room[,] grid;
+    public int mapSeed;
 
     public GameObject RandomRoomPrefab()
     {
-        return gridPrefabs[Random.Range(0, gridPrefabs.Length)];
+        return gridPrefabs[UnityEngine.Random.Range(0, gridPrefabs.Length)];
     }
     public void GenerateMap()
     {
+        UnityEngine.Random.InitState(mapSeed);
         grid = new Room[cols, rows];
         for (int currentRow = 0; currentRow < rows; currentRow++)
         {

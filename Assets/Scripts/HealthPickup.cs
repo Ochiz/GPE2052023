@@ -25,6 +25,8 @@ public class HealthPickup : MonoBehaviour
             powerupManager.Add(powerup);
 
             Destroy(gameObject);
+
+            GameManager.instance.totalPowerups -= 1;
         }
     }
 }

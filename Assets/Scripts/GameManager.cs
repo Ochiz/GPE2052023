@@ -10,13 +10,28 @@ public class GameManager : MonoBehaviour
     public GameObject playerControllerPrefab;
     public GameObject tankPawnPrefab;
     public Transform playerSpawnTransform;
+    public Transform aiSpawnTransform;
     public List<PlayerController> players;
     public List<AIController> aiPlayers;
+    public List<GameObject> aiControllerPrefabs;
+    public PawnSpawnPoint[] pawnSpawns;
+    public int TotalAiToSpawn;
+    public float totalPowerups = 0;
+    public float maxPowerups;
     // Start is called before the first frame update
     private void Start()
     {
         level.GenerateMap();
+        //spawn player randomly
+        pawnSpawns = FindObjectsOfType<PawnSpawnPoint>();
+
+        playerSpawnTransform = RandomSpawnTransform();       
         SpawnPlayer();
+        for(int i = 0; i <= TotalAiToSpawn; i ++)
+        {
+            aiSpawnTransform = RandomSpawnTransform();
+            SpawnAi();
+        }
     }
     //function to ensure this is the only game manager
     private void Awake()
@@ -39,5 +54,23 @@ public class GameManager : MonoBehaviour
         Controller newController = newPlayerObj.GetComponent<Controller>();
         Pawn newPawn = newPawnObj.GetComponent<Pawn>();
         newController.pawn = newPawn;
+    }
+    public void SpawnAi()
+    {
+        GameObject newAiObject = Instantiate(RandomAiPrefab(), Vector3.zero, Quaternion.identity) as GameObject;
+        GameObject newAiPawnObject = Instantiate(tankPawnPrefab, aiSpawnTransform.position, Quaternion.identity) as GameObject;
+        AIController newAIController = newAiObject.GetComponent<AIController>();
+        Pawn newAIPawn = newAiPawnObject.GetComponent<Pawn>();
+        newAIController.pawn = newAIPawn;
+    }
+    public GameObject RandomAiPrefab()
+    {
+      
+        return aiControllerPrefabs[Random.Range(0, aiControllerPrefabs.Count)];
+    }
+    public Transform RandomSpawnTransform()
+    {
+        return pawnSpawns[Random.Range(0, pawnSpawns.Length)].transform;
+       
     }
 }
