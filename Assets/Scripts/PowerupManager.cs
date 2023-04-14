@@ -15,7 +15,7 @@ public class PowerupManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        DecrementPowerupTimers();
     }
     private void LateUpdate()
     {
@@ -45,6 +45,13 @@ public class PowerupManager : MonoBehaviour
         }
 
     }
+    //How powerups are removed over time.
+    //in the inspector the designers can designate a time
+    //for each powerup to be applied for. then every update
+    //frame after the power up has been added to the list the
+    //code goes in and reduces all durations of the powerups
+    //and once the duration hits 0 it adds it to the remove
+    //power up que
     private void ApllyRemovePowerupsQueue()
     {
         if (removedPowerupQueue != null)

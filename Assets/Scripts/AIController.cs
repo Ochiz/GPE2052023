@@ -37,6 +37,7 @@ public abstract class AIController : Controller
                 GameManager.instance.aiPlayers.Add(this);
             }
         }
+        ChooseTarget();
         ChangeState(currentState);
         
         base.Start();
@@ -114,7 +115,7 @@ public abstract class AIController : Controller
     public void DoAttackState()
     {
         Seek(target);
-        Shoot();
+        Shoot(); 
     }
     //Idle state
     protected virtual void DoIdleState()

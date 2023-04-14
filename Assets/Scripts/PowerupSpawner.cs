@@ -24,11 +24,11 @@ public class PowerupSpawner : MonoBehaviour
             {
                 if (GameManager.instance != null)
                 {
-                    if (GameManager.instance.totalPowerups < GameManager.instance.maxPowerups)
+                    if (GameManager.instance.level.totalPowerups < GameManager.instance.level.maxPowerups)
                     {
                         spawnedPickup = Instantiate(pickupPrefab, transform.position, Quaternion.identity) as GameObject;
                         nextSpawnTime = Time.time + spawnDelay;
-                        GameManager.instance.totalPowerups += 1;
+                        GameManager.instance.level.totalPowerups += 1;
                     }
                 }
             }

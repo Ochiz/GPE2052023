@@ -25,7 +25,7 @@ public class DamagePickup : MonoBehaviour
             powerupManager.Add(powerup);
 
             Destroy(gameObject);
-            GameManager.instance.totalPowerups -= 1;
+            GameManager.instance.level.totalPowerups -= 1;
         }
     }
 }

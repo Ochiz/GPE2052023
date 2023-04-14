@@ -4,6 +4,10 @@ using System;
 
 public class MapGenerator : MonoBehaviour
 {
+    public PawnSpawnPoint[] pawnSpawns;
+    public int TotalAiToSpawn;
+    public float totalPowerups = 0;
+    public float maxPowerups;
     public GameObject[] gridPrefabs;
     public int rows;
     public int cols;
@@ -11,7 +15,34 @@ public class MapGenerator : MonoBehaviour
     public float roomHeight = 50.0f;
     private Room[,] grid;
     public int mapSeed;
+    public bool isMapOfTheDay;
+    public bool isMapRandom;
+    public bool customMapSeed;
+    
+    //How seeds work if map is random it will take the current
+    //date and time to make a seed. If map is map of the day it
+    //will take just the date and make the seed. if it is a custom
+    //map then the developers can put their own seed in the inspector.
 
+    public void Start()
+    {
+        if (isMapOfTheDay)
+        {
+            mapSeed = DateToInt(DateTime.Now.Date);
+        }
+        else if (isMapRandom)
+        {
+            mapSeed = DateToInt(DateTime.Now);
+        }
+        else if (customMapSeed)
+        {
+            mapSeed = mapSeed;
+        }
+        else
+        {
+            mapSeed = DateToInt(DateTime.Now);
+        }
+    }
     public GameObject RandomRoomPrefab()
     {
         return gridPrefabs[UnityEngine.Random.Range(0, gridPrefabs.Length)];
@@ -60,6 +91,12 @@ public class MapGenerator : MonoBehaviour
                     tempRoom.doorWest.SetActive(false);
                     tempRoom.doorEast.SetActive(false);
                 }
+                //how doors are opened. The code checks
+                //by means of collumns and rows if the
+                //current room is at the edge of the map.
+                //if it is then certain doors are opened
+                //and closed in that room. otherwise all
+                //doors are opened.
             }
         }
     }
@@ -72,5 +109,9 @@ public class MapGenerator : MonoBehaviour
                 Destroy(tile);
             }
         }
+    }
+    public int DateToInt(DateTime dateToUse)
+    {
+        return dateToUse.Year + dateToUse.Month + dateToUse.Day + dateToUse.Hour + dateToUse.Minute + dateToUse.Second + dateToUse.Millisecond;
     }
 }
