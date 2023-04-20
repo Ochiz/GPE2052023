@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class Pawn : MonoBehaviour
 {
     //variable declaration
+    public Controller controller;
     public float moveSpeed;
     public float sprintSpeed;
     public float turnSpeed;

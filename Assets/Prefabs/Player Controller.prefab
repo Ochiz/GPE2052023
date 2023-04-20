@@ -51,3 +51,6 @@ MonoBehaviour:
   rotateCounterClockwiseKey: 97
   sprintKey: 304
   shootKey: 32
+  playerScore: 0
+  playerLives: 0
+  scoreToExtraLife: 0

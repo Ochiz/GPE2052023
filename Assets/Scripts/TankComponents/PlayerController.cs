@@ -10,6 +10,9 @@ public class PlayerController : Controller
     public KeyCode rotateCounterClockwiseKey;
     public KeyCode sprintKey;
     public KeyCode shootKey;
+    public float playerScore;
+    public int playerLives;
+    public float scoreToExtraLife;
     // Start is called before the first frame update
     public override void Start()
     {
