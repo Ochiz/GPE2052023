@@ -45,12 +45,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pawn: {fileID: 0}
+  playerScore: 0
+  playerLives: 3
+  scoreForKill: 150
+  scoreToExtraLife: 1000
   moveForwardKey: 119
   moveBackwardKey: 115
   rotateClockwiseKey: 100
   rotateCounterClockwiseKey: 97
   sprintKey: 304
   shootKey: 32
-  playerScore: 0
-  playerLives: 0
-  scoreToExtraLife: 0

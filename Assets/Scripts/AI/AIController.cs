@@ -261,6 +261,10 @@ public abstract class AIController : Controller
             return false;
         }
     }
+    public override void AddToScore(float scoreToAdd)
+    {
+
+    }
     //called on destroy
     public void OnDestroy()
     {

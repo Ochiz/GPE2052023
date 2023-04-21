@@ -10,9 +10,8 @@ public class PlayerController : Controller
     public KeyCode rotateCounterClockwiseKey;
     public KeyCode sprintKey;
     public KeyCode shootKey;
-    public float playerScore;
-    public int playerLives;
-    public float scoreToExtraLife;
+   
+    private float progressToExtraLife;
     // Start is called before the first frame update
     public override void Start()
     {
@@ -24,6 +23,7 @@ public class PlayerController : Controller
                 GameManager.instance.players.Add(this);
             }
         }
+        progressToExtraLife = 0;
         // Run the Start() function from the parent (base) class
         base.Start();
     }
@@ -80,6 +80,16 @@ public class PlayerController : Controller
         if (Input.GetKeyDown(shootKey))
         {
             pawn.Shoot();
+        }
+    }
+    public override void AddToScore(float scoreToAdd)
+    {
+        playerScore = playerScore + scoreToAdd;
+        progressToExtraLife = progressToExtraLife + scoreToAdd;
+        if(progressToExtraLife >= scoreToExtraLife)
+        {
+            playerLives += 1;
+            progressToExtraLife = 0;
         }
     }
 }

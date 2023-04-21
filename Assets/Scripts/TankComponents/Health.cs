@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
     //variable declaration
     public float currentHealth;
     public float maxHealth;
+    public Image healthImage;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,20 +25,38 @@ public class Health : MonoBehaviour
     {
         currentHealth = currentHealth - amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        healthImage.fillAmount = currentHealth / maxHealth;
         Debug.Log(source.name + " did" + amount + " damage to " + gameObject.name);
         if (currentHealth <= 0)
         {
-            Die(source);    
+            if (GetComponent<PlayerController>() != null)
+            {
+                if (GetComponent<PlayerController>().playerLives > 0)
+                {
+                    currentHealth = maxHealth;
+                    GetComponent<PlayerController>().playerLives -= 1;
+                }
+                else
+                {
+                    Die(source);
+                }
+            }
+            else
+            {
+                Die(source);
+            }
         }
     }
     public void Heal(float amount, Pawn source)
     {
         currentHealth = currentHealth + amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        healthImage.fillAmount = currentHealth / maxHealth;
         Debug.Log(source.name + " did" + amount + " healing to " + gameObject.name);
     }
     public void Die(Pawn source)
     {
         Destroy(gameObject);
+        source.controller.AddToScore(source.controller.scoreForKill);
     }
 }
