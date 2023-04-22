@@ -26,22 +26,7 @@ public class MapGenerator : MonoBehaviour
 
     public void Start()
     {
-        if (isMapOfTheDay)
-        {
-            mapSeed = DateToInt(DateTime.Now.Date);
-        }
-        else if (isMapRandom)
-        {
-            mapSeed = DateToInt(DateTime.Now);
-        }
-        else if (customMapSeed)
-        {
-            mapSeed = mapSeed;
-        }
-        else
-        {
-            mapSeed = DateToInt(DateTime.Now);
-        }
+        
     }
     public GameObject RandomRoomPrefab()
     {
@@ -49,7 +34,25 @@ public class MapGenerator : MonoBehaviour
     }
     public void GenerateMap()
     {
-        UnityEngine.Random.InitState(mapSeed);
+        if (isMapOfTheDay)
+        {
+            mapSeed = DateToInt(DateTime.Now.Date);
+            UnityEngine.Random.InitState(mapSeed);
+        }
+        else if (isMapRandom)
+        {
+            mapSeed = DateToInt(DateTime.Now);
+            UnityEngine.Random.InitState(mapSeed);
+        }
+        else if (customMapSeed)
+        {
+            UnityEngine.Random.InitState(mapSeed);
+        }
+        else
+        {
+            mapSeed = DateToInt(DateTime.Now);
+            UnityEngine.Random.InitState(mapSeed);
+        }   
         grid = new Room[cols, rows];
         for (int currentRow = 0; currentRow < rows; currentRow++)
         {

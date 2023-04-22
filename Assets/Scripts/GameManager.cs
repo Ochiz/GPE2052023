@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class GameManager : MonoBehaviour
 {
     //variable declaration
@@ -24,23 +25,24 @@ public class GameManager : MonoBehaviour
     public GameObject CreditsScreenStateObject;
     public GameObject GamePlayScreenStateObject;
     public GameObject GameOverScreenStateObject;
+    
 
     private PawnSpawnPoint randomAI;
     // Start is called before the first frame update
     private void Start()
     {
-        
-     
+
+
 
     }
     private void Update()
     {
-        
+
     }
     //function to ensure this is the only game manager
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
@@ -49,8 +51,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        currentState = GameState.GamePlay;
-        DoGamePlayState();
+        DoTitleState();
     }
     private void DeactivateAllStates()
     {
@@ -62,9 +63,9 @@ public class GameManager : MonoBehaviour
         GameOverScreenStateObject.SetActive(false);
     }
     public void ActivateTitleScreen()
-    {  
-        DeactivateAllStates();     
-        TitleScreenStateObject.SetActive(true);    
+    {
+        DeactivateAllStates();
+        TitleScreenStateObject.SetActive(true);
     }
     public void ActivateMainMenuScreen()
     {
@@ -162,6 +163,28 @@ public class GameManager : MonoBehaviour
         }
 
     }
+    public void DoGamePlayState()
+    {
+        GamePlayState();
+    }
+    protected void GameOverState()
+    {
+        ActivateGameOverScreen();
+    }
+    public void DoGameOverState()
+    {
+        GameOverState();
+    }
+    protected void CreditsState()
+    {
+        ActivateCreditsScreen();
+    }
+    public void DoCreditsState()
+    {
+        CreditsState();
+    }
+    
+   
     public void SpawnPlayerPawns()
     {
         foreach (PlayerController player in players)
@@ -187,26 +210,7 @@ public class GameManager : MonoBehaviour
         players.Add(newPlayerController);
 
     }
-    public void DoGamePlayState()
-    {
-        GamePlayState();
-    }
-    protected void GameOverState()
-    {
-        ActivateGameOverScreen();
-    }
-    public void DoGameOverState()
-    {
-        GameOverState();
-    }
-    protected void CreditsState()
-    {
-        ActivateCreditsScreen();
-    }
-    public void DoCreditsState()
-    {
-        CreditsState();
-    }
+    
     //function to spawn player
     public void SpawnPlayer()
     {

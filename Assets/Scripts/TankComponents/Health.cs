@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class Health : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class Health : MonoBehaviour
         currentHealth = currentHealth - amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         healthImage.fillAmount = currentHealth / maxHealth;
+        GetComponent<AudioSources>().dmgSFXSource.Play(0);
         Debug.Log(source.name + " did" + amount + " damage to " + gameObject.name);
         if (currentHealth <= 0)
         {
@@ -35,9 +37,10 @@ public class Health : MonoBehaviour
                 {
                     currentHealth = maxHealth;
                     GetComponent<PlayerController>().playerLives -= 1;
+                    GetComponent<PlayerController>().lifeHud.text = GetComponent<PlayerController>().playerLives.ToString();
                 }
                 else
-                {
+                {                     
                     Die(source);
                 }
             }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class TankShooter : Shooter
 {
@@ -30,6 +31,10 @@ public class TankShooter : Shooter
         if (rb != null)
         {
             rb.AddForce(firepointTransform.forward * fireForce);
+        }
+        if (GetComponent<PlayerController>() != null)
+        {
+            GetComponent<AudioSources>().shotSFXSource.Play(0);
         }
         Destroy(newShell, lifespan);
         

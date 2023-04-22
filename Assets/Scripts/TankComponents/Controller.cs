@@ -7,10 +7,9 @@ public abstract class Controller : MonoBehaviour
 {
     //variable declaration
     public Pawn pawn;
-    public float playerScore;
-    public int playerLives;
+    
     public int scoreForKill;
-    public float scoreToExtraLife;
+    
     // Start is called before the first frame update
     public virtual void Start()
     {

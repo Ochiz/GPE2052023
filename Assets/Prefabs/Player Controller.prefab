@@ -55,3 +55,6 @@ MonoBehaviour:
   rotateCounterClockwiseKey: 97
   sprintKey: 304
   shootKey: 32
+  optionsKey: 27
+  scoreHud: {fileID: 0}
+  lifeHud: {fileID: 0}

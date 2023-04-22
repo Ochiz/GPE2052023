@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 [System.Serializable]
 public class PlayerController : Controller
 {
@@ -10,8 +11,12 @@ public class PlayerController : Controller
     public KeyCode rotateCounterClockwiseKey;
     public KeyCode sprintKey;
     public KeyCode shootKey;
-   
+    public Text scoreHud;
+    public Text lifeHud;
     private float progressToExtraLife;
+    public float playerScore;
+    public int playerLives;
+    public float scoreToExtraLife;
     // Start is called before the first frame update
     public override void Start()
     {
@@ -23,6 +28,10 @@ public class PlayerController : Controller
                 GameManager.instance.players.Add(this);
             }
         }
+        //scoreHud = pawn.GetComponent<ScoreText>();
+       // lifeHud = pawn.Canvas.LifeText;
+       // scoreHud.text = playerScore.ToString();
+        //lifeHud.text = playerLives.ToString();
         progressToExtraLife = 0;
         // Run the Start() function from the parent (base) class
         base.Start();
@@ -85,10 +94,12 @@ public class PlayerController : Controller
     public override void AddToScore(float scoreToAdd)
     {
         playerScore = playerScore + scoreToAdd;
+        scoreHud.text = playerScore.ToString();
         progressToExtraLife = progressToExtraLife + scoreToAdd;
         if(progressToExtraLife >= scoreToExtraLife)
         {
             playerLives += 1;
+            lifeHud.text = playerLives.ToString();
             progressToExtraLife = 0;
         }
     }
