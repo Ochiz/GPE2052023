@@ -5,8 +5,5 @@ using UnityEngine.Audio;
 
 public class AudioSources : MonoBehaviour
 {
-    public AudioSource shotSFXSource;
-    public AudioSource dmgSFXSource;
-
-
+    public AudioSource SFXSource;
 }

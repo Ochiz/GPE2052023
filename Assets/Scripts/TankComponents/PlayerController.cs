@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 [System.Serializable]
 public class PlayerController : Controller
 {
@@ -11,12 +12,20 @@ public class PlayerController : Controller
     public KeyCode rotateCounterClockwiseKey;
     public KeyCode sprintKey;
     public KeyCode shootKey;
+    public KeyCode playerTwomoveForwardKey;
+    public KeyCode playerTwomoveBackwardKey;
+    public KeyCode playerTworotateClockwiseKey;
+    public KeyCode playerTworotateCounterClockwiseKey;
+    public KeyCode playerTwosprintKey;
+    public KeyCode playerTwoshootKey;
     public Text scoreHud;
     public Text lifeHud;
     private float progressToExtraLife;
     public float playerScore;
     public int playerLives;
     public float scoreToExtraLife;
+    public AudioClip ShootSFX;
+    public AudioClip DmgSFX;
     // Start is called before the first frame update
     public override void Start()
     {
@@ -56,6 +65,15 @@ public class PlayerController : Controller
                 GameManager.instance.players.Remove(this);
             }
         }
+    }
+    public override void Player2Controls()
+    {
+        moveForwardKey = playerTwomoveForwardKey;
+        moveBackwardKey = playerTwomoveBackwardKey;
+        rotateClockwiseKey = playerTworotateClockwiseKey;
+        rotateCounterClockwiseKey = playerTworotateCounterClockwiseKey;
+        sprintKey = playerTwosprintKey;
+        shootKey = playerTwoshootKey;
     }
     //function to check player inputs
     public override void ProcessInputs()

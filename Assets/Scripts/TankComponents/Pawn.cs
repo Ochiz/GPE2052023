@@ -18,6 +18,7 @@ public abstract class Pawn : MonoBehaviour
     public float shellLifespan;
     public float fireRate;
     protected float secondsPerShot;
+    public Camera playerCamera;
     // Start is called before the first frame update
     public virtual void Start()
     {

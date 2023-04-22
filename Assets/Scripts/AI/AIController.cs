@@ -276,5 +276,8 @@ public abstract class AIController : Controller
             }
         }
     }
+    public override void Player2Controls()
+    {
 
+    }
 }

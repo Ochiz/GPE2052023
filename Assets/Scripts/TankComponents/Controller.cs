@@ -24,4 +24,5 @@ public abstract class Controller : MonoBehaviour
     //functions to be overwritten
     public abstract void ProcessInputs();
     public abstract void AddToScore(float scoreToAdd);
+    public abstract void Player2Controls();
 }

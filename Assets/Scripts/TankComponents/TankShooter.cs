@@ -5,6 +5,7 @@ using UnityEngine.Audio;
 
 public class TankShooter : Shooter
 {
+    
     public Transform firepointTransform;
     // Start is called before the first frame update
     public override void Start()
@@ -34,7 +35,7 @@ public class TankShooter : Shooter
         }
         if (GetComponent<PlayerController>() != null)
         {
-            GetComponent<AudioSources>().shotSFXSource.Play(0);
+            GetComponent<AudioSources>().SFXSource.PlayOneShot(GetComponent<PlayerController>().ShootSFX);
         }
         Destroy(newShell, lifespan);
         

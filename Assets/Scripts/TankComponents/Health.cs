@@ -27,7 +27,10 @@ public class Health : MonoBehaviour
         currentHealth = currentHealth - amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         healthImage.fillAmount = currentHealth / maxHealth;
-        GetComponent<AudioSources>().dmgSFXSource.Play(0);
+        if (GetComponent<PlayerController>() != null)
+        {
+            GetComponent<AudioSources>().SFXSource.PlayOneShot(GetComponent<PlayerController>().DmgSFX);
+        }
         Debug.Log(source.name + " did" + amount + " damage to " + gameObject.name);
         if (currentHealth <= 0)
         {

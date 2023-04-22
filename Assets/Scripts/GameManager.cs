@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     public GameObject CreditsScreenStateObject;
     public GameObject GamePlayScreenStateObject;
     public GameObject GameOverScreenStateObject;
+    public bool twoPlayerGame = true;
     
 
     private PawnSpawnPoint randomAI;
@@ -214,16 +215,44 @@ public class GameManager : MonoBehaviour
     //function to spawn player
     public void SpawnPlayer()
     {
-        playerSpawnTransform = RandomSpawnObject().transform;
-        GameObject newPlayerObj = Instantiate(playerControllerPrefab, Vector3.zero, Quaternion.identity) as GameObject;
-        GameObject newPawnObj = Instantiate(tankPawnPrefab, playerSpawnTransform.position, playerSpawnTransform.rotation) as GameObject;
-        Controller newController = newPlayerObj.GetComponent<Controller>();
-        players.Add((PlayerController)newController);
-        Pawn newPawn = newPawnObj.GetComponent<Pawn>();
-        newController.pawn = newPawn;
-        newPawn.controller = newController;
+        if (twoPlayerGame)
+        {
+            playerSpawnTransform = RandomSpawnObject().transform;
+            GameObject newPlayerObj = Instantiate(playerControllerPrefab, Vector3.zero, Quaternion.identity) as GameObject;
+            GameObject newPawnObj = Instantiate(tankPawnPrefab, playerSpawnTransform.position, playerSpawnTransform.rotation) as GameObject;
+            Controller newController = newPlayerObj.GetComponent<Controller>();
+            players.Add((PlayerController)newController);
+            Pawn newPawn = newPawnObj.GetComponent<Pawn>();
+            newController.pawn = newPawn;
+            newPawn.controller = newController; 
+            newPawn.playerCamera.rect = new Rect(0, 0, 0.5f, 1);
+
+            playerSpawnTransform = RandomSpawnObject().transform;
+            GameObject newPlayerObj2 = Instantiate(playerControllerPrefab, Vector3.zero, Quaternion.identity) as GameObject;
+            GameObject newPawnObj2 = Instantiate(tankPawnPrefab, playerSpawnTransform.position, playerSpawnTransform.rotation) as GameObject;
+            Controller newController2 = newPlayerObj2.GetComponent<Controller>();
+            players.Add((PlayerController)newController2);
+            Pawn newPawn2 = newPawnObj2.GetComponent<Pawn>();
+            newController2.pawn = newPawn2;
+            newPawn2.controller = newController2;  
+            newPawn2.playerCamera.rect = new Rect(0.5f, 0, 0.5f, 1);
+            newPawn2.playerCamera.GetComponent<AudioListener>().enabled = false;
+            newPawn2.controller.Player2Controls();
+        }
+        else
+        {
+            playerSpawnTransform = RandomSpawnObject().transform;
+            GameObject newPlayerObj = Instantiate(playerControllerPrefab, Vector3.zero, Quaternion.identity) as GameObject;
+            GameObject newPawnObj = Instantiate(tankPawnPrefab, playerSpawnTransform.position, playerSpawnTransform.rotation) as GameObject;
+            Controller newController = newPlayerObj.GetComponent<Controller>();
+            players.Add((PlayerController)newController);
+            Pawn newPawn = newPawnObj.GetComponent<Pawn>();
+            newController.pawn = newPawn;
+            newPawn.controller = newController;
+        }
 
     }
+    
     public void SpawnAi()
     {
         randomAI = RandomSpawnObject();
