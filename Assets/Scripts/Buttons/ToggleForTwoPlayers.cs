@@ -8,7 +8,15 @@ public class ToggleForTwoPlayers : MonoBehaviour
     {
         if (GameManager.instance != null)
         {
-            GameManager.instance.twoPlayerGame = value;
+            if (GameManager.instance.twoPlayerGame == true)
+            {
+                GameManager.instance.twoPlayerGame = false;
+            }
+            else
+            {
+                GameManager.instance.twoPlayerGame = true;
+
+            }
         }
     }
 }

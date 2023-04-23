@@ -8,7 +8,15 @@ public class ToggleForRandomMap : MonoBehaviour
     {
         if (GameManager.instance != null)
         {
-            GameManager.instance.level.isMapRandom = value;
+            if (GameManager.instance.level.isMapRandom == true)
+            {
+                GameManager.instance.level.isMapRandom = false;
+            }
+            else
+            {
+                GameManager.instance.level.isMapRandom = true;
+
+            }
         }
     }
 }

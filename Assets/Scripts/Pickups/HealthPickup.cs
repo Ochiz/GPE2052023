@@ -5,6 +5,8 @@ using UnityEngine;
 public class HealthPickup : MonoBehaviour
 {
     public HealthPowerup powerup;
+    public AudioClip pickup;
+    public AudioSource sfxSource;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +21,7 @@ public class HealthPickup : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {       
         PowerupManager powerupManager = other.GetComponent<PowerupManager>();
-        
+        sfxSource.PlayOneShot(pickup);
         if (powerupManager != null)
         {
             powerupManager.Add(powerup);

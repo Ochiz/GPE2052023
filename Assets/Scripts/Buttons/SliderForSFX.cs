@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class SliderForSFX : MonoBehaviour
 {
+    //variables
     public AudioMixer SFXAudioMixer;
     public Slider SFXVolumeSlider;
 
@@ -13,7 +14,7 @@ public class SliderForSFX : MonoBehaviour
     {
         OnSFXVolumeChange();
     }
-
+    //on slider value change
     public void OnSFXVolumeChange()
     {
         float newVolume = SFXVolumeSlider.value;
@@ -28,4 +29,10 @@ public class SliderForSFX : MonoBehaviour
         }
         SFXAudioMixer.SetFloat("sfxVolume", newVolume);
     }
+    //how SFX volume works
+    //first we get the value from the SFX slider 
+    //then we change the variable to a value that
+    //the audio mixer can use by taking the Log10 of
+    //it and then multiplying by 20 then we set the music
+    //volume portion of our mixer to the value
 }

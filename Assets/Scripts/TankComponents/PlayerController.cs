@@ -18,14 +18,10 @@ public class PlayerController : Controller
     public KeyCode playerTworotateCounterClockwiseKey;
     public KeyCode playerTwosprintKey;
     public KeyCode playerTwoshootKey;
-    public Text scoreHud;
-    public Text lifeHud;
+   
     private float progressToExtraLife;
-    public float playerScore;
-    public int playerLives;
-    public float scoreToExtraLife;
-    public AudioClip ShootSFX;
-    public AudioClip DmgSFX;
+    
+    
     // Start is called before the first frame update
     public override void Start()
     {
@@ -37,10 +33,8 @@ public class PlayerController : Controller
                 GameManager.instance.players.Add(this);
             }
         }
-        //scoreHud = pawn.GetComponent<ScoreText>();
-       // lifeHud = pawn.Canvas.LifeText;
-       // scoreHud.text = playerScore.ToString();
-        //lifeHud.text = playerLives.ToString();
+        pawn.GetComponent<HudValues>().lifeHud.text = "Lives: " + playerLives.ToString();
+        pawn.GetComponent<HudValues>().scoreHud.text = "Score: " + playerScore.ToString();
         progressToExtraLife = 0;
         // Run the Start() function from the parent (base) class
         base.Start();
@@ -112,12 +106,12 @@ public class PlayerController : Controller
     public override void AddToScore(float scoreToAdd)
     {
         playerScore = playerScore + scoreToAdd;
-        scoreHud.text = playerScore.ToString();
+        pawn.GetComponent<HudValues>().scoreHud.text = "Score: " + playerScore.ToString();
         progressToExtraLife = progressToExtraLife + scoreToAdd;
         if(progressToExtraLife >= scoreToExtraLife)
         {
             playerLives += 1;
-            lifeHud.text = playerLives.ToString();
+            pawn.GetComponent<HudValues>().lifeHud.text = "Lives: " + playerLives.ToString();
             progressToExtraLife = 0;
         }
     }

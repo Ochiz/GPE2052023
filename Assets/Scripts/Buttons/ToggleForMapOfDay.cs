@@ -8,7 +8,15 @@ public class ToggleForMapOfDay : MonoBehaviour
     {
         if (GameManager.instance != null)
         {
-            GameManager.instance.level.isMapOfTheDay = value;
+            if (GameManager.instance.level.isMapOfTheDay == true)
+            {
+                GameManager.instance.level.isMapOfTheDay = false;
+            }
+            else
+            {
+                GameManager.instance.level.isMapOfTheDay = true;
+
+            }
         }
     }
 }

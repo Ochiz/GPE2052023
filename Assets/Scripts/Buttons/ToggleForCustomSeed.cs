@@ -8,7 +8,15 @@ public class ToggleForCustomSeed : MonoBehaviour
     {
         if (GameManager.instance != null)
         {
-            GameManager.instance.level.customMapSeed = value;
+            if (GameManager.instance.level.customMapSeed == true)
+            {
+                GameManager.instance.level.customMapSeed = false;
+            }
+            else
+            {
+                GameManager.instance.level.customMapSeed = true;
+
+            }
         }
     }
 }

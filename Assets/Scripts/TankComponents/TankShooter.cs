@@ -5,12 +5,12 @@ using UnityEngine.Audio;
 
 public class TankShooter : Shooter
 {
-    
+    private AudioClip shot;
     public Transform firepointTransform;
     // Start is called before the first frame update
     public override void Start()
     {
-        
+        shot = GetComponent<Pawn>().controller.ShootSFX;
     }
 
     // Update is called once per frame
@@ -33,10 +33,9 @@ public class TankShooter : Shooter
         {
             rb.AddForce(firepointTransform.forward * fireForce);
         }
-        if (GetComponent<PlayerController>() != null)
-        {
-            GetComponent<AudioSources>().SFXSource.PlayOneShot(GetComponent<PlayerController>().ShootSFX);
-        }
+        AudioSource test= GetComponent<AudioSources>().SFXSource;
+        test.PlayOneShot(shot);
+        
         Destroy(newShell, lifespan);
         
     }

@@ -10,6 +10,7 @@ public class PowerupManager : MonoBehaviour
     public virtual void Start()
     {
         powerups = new List<Powerup>();
+        removedPowerupQueue = new List<Powerup>();
     }
 
     // Update is called once per frame

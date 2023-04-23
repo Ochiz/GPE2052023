@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
         }
         DoTitleState();
     }
+    //deactivate for change state
     private void DeactivateAllStates()
     {
         TitleScreenStateObject.SetActive(false);
@@ -63,6 +64,8 @@ public class GameManager : MonoBehaviour
         GamePlayScreenStateObject.SetActive(false);
         GameOverScreenStateObject.SetActive(false);
     }
+    //below are all the activates for each state
+    //and there "do" functions 
     public void ActivateTitleScreen()
     {
         DeactivateAllStates();
@@ -117,8 +120,30 @@ public class GameManager : MonoBehaviour
     {
         OptionsState();
     }
+    public void DoGamePlayState()
+    {
+        GamePlayState();
+    }
+    protected void GameOverState()
+    {
+        
+        ActivateGameOverScreen();
+    }
+    public void DoGameOverState()
+    {
+        GameOverState();
+    }
+    protected void CreditsState()
+    {
+        ActivateCreditsScreen();
+    }
+    public void DoCreditsState()
+    {
+        CreditsState();
+    }
     protected void GamePlayState()
     {
+        //clear all objects 
         ActivateGamePlayScreen();
         if (allPowerups != null)
         {
@@ -141,6 +166,7 @@ public class GameManager : MonoBehaviour
             }
         }
         level.DestroyMap();
+        //regenerate all objects
         level.GenerateMap();
         level.pawnSpawns = FindObjectsOfType<PawnSpawnPoint>();
         if (players != null && players.Count > 0)
@@ -164,28 +190,9 @@ public class GameManager : MonoBehaviour
         }
 
     }
-    public void DoGamePlayState()
-    {
-        GamePlayState();
-    }
-    protected void GameOverState()
-    {
-        ActivateGameOverScreen();
-    }
-    public void DoGameOverState()
-    {
-        GameOverState();
-    }
-    protected void CreditsState()
-    {
-        ActivateCreditsScreen();
-    }
-    public void DoCreditsState()
-    {
-        CreditsState();
-    }
     
-   
+    
+    //function to spawn only pawns
     public void SpawnPlayerPawns()
     {
         foreach (PlayerController player in players)
@@ -201,6 +208,7 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+    //function to spawn only controllers
     public void SpawnPlayerControllers()
     {
         GameObject newPlayerObject = Instantiate(playerControllerPrefab, Vector3.zero, Quaternion.identity) as GameObject;
@@ -215,6 +223,7 @@ public class GameManager : MonoBehaviour
     //function to spawn player
     public void SpawnPlayer()
     {
+        //different code for two player game
         if (twoPlayerGame)
         {
             playerSpawnTransform = RandomSpawnObject().transform;
@@ -252,7 +261,7 @@ public class GameManager : MonoBehaviour
         }
 
     }
-    
+    //spawn AI
     public void SpawnAi()
     {
         randomAI = RandomSpawnObject();
@@ -266,6 +275,7 @@ public class GameManager : MonoBehaviour
         newAIController.waypoints = randomAI.GetComponent<PawnSpawnPoint>().currentRoom.roomPatrol;
 
     }
+    //below is for random spawns
     public GameObject RandomAiPrefab()
     {
       

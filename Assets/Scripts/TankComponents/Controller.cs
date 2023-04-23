@@ -1,15 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 [System.Serializable]
 
 public abstract class Controller : MonoBehaviour
 {
     //variable declaration
     public Pawn pawn;
-    
+    public AudioClip ShootSFX;
+    public AudioClip DmgSFX;
+    public AudioClip DeathSFX;
     public int scoreForKill;
-    
+    public float playerScore;
+    public int playerLives;
+    public float scoreToExtraLife;
     // Start is called before the first frame update
     public virtual void Start()
     {

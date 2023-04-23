@@ -46,7 +46,10 @@ public class AIGuard : AIController
                 }
                 if (target != null)
                 {
-                    
+                    if(CanHear(target))
+                    {
+                        ChangeState(AIState.Chase);
+                    }
                     if (CanSee(target))
                     {
                         
