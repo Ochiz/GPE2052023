@@ -149,7 +149,7 @@ public class GameManager : MonoBehaviour
         {
             allPowerups.Clear();
         }
-        if (aiPlayers != null)
+        if (aiPlayers != null && aiPlayers.Count >0)
         {
             foreach (AIController ai in aiPlayers)
             {
@@ -158,7 +158,7 @@ public class GameManager : MonoBehaviour
             }
             aiPlayers.Clear();
         }
-        if (players != null)
+        if (players != null && players.Count >0)
         {
             foreach (PlayerController player in players)
             {

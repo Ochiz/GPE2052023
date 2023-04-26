@@ -48,7 +48,8 @@ MonoBehaviour:
   ShootSFX: {fileID: 8300000, guid: d3247579c549643a5b3a95f9224eaf3c, type: 3}
   DmgSFX: {fileID: 8300000, guid: 8e3b4236a7258471caabb3542eee992b, type: 3}
   DeathSFX: {fileID: 8300000, guid: 5ae4d298ed547ba4c88587effb75d7e1, type: 3}
-  scoreForKill: 150
+  scoreForAIKill: 150
+  scoreForPlayerKill: 300
   playerScore: 0
   playerLives: 1
   scoreToExtraLife: 1000
@@ -58,6 +59,7 @@ MonoBehaviour:
   rotateCounterClockwiseKey: 97
   sprintKey: 304
   shootKey: 32
+  optionsKey: 27
   playerTwomoveForwardKey: 273
   playerTwomoveBackwardKey: 274
   playerTworotateClockwiseKey: 275

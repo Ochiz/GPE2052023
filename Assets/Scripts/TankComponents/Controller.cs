@@ -11,7 +11,8 @@ public abstract class Controller : MonoBehaviour
     public AudioClip ShootSFX;
     public AudioClip DmgSFX;
     public AudioClip DeathSFX;
-    public int scoreForKill;
+    public int scoreForAIKill;
+    public int scoreForPlayerKill;
     public float playerScore;
     public int playerLives;
     public float scoreToExtraLife;

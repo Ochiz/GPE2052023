@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamagePickup : MonoBehaviour
+public class DamagePickup : Pickup
 {
     public DamagePowerup powerup;
     public AudioClip pickup;
@@ -18,7 +18,7 @@ public class DamagePickup : MonoBehaviour
     {
         
     }
-    public void OnTriggerEnter(Collider other)
+    public override void OnTriggerEnter(Collider other)
     {
         PowerupManager powerupManager = other.GetComponent<PowerupManager>();
         sfxSource.PlayOneShot(pickup);
@@ -29,5 +29,9 @@ public class DamagePickup : MonoBehaviour
             Destroy(gameObject);
             GameManager.instance.level.totalPowerups -= 1;
         }
+    }
+    public override void RotateClockwise()
+    {
+        mover.Rotate(turnSpeed);
     }
 }

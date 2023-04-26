@@ -109,7 +109,7 @@ public class MapGenerator : MonoBehaviour
         {
             foreach (Room tile in grid)
             {
-                Destroy(tile);
+                Destroy(tile.gameObject);
             }
         }
     }

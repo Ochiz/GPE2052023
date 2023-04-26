@@ -39,6 +39,15 @@ public class Health : MonoBehaviour
         //check if health is less than 0
         if (currentHealth <= 0) 
         {
+            //check what kind of tank for diffferent scores
+            if (GetComponent<Pawn>().controller is PlayerController)
+            {
+                source.controller.AddToScore(source.controller.scoreForPlayerKill);
+            }
+            else
+            {
+                source.controller.AddToScore(source.controller.scoreForAIKill);
+            }
             //check if pawn is player
             if (GetComponent<Pawn>().controller is PlayerController)
             {
@@ -97,6 +106,6 @@ public class Health : MonoBehaviour
     {
         GetComponent<AudioSources>().SFXSource.PlayOneShot(death);
         Destroy(gameObject);
-        source.controller.AddToScore(source.controller.scoreForKill);
+        
     }
 }

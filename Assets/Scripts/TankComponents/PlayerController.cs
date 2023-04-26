@@ -12,6 +12,7 @@ public class PlayerController : Controller
     public KeyCode rotateCounterClockwiseKey;
     public KeyCode sprintKey;
     public KeyCode shootKey;
+    public KeyCode optionsKey;
     public KeyCode playerTwomoveForwardKey;
     public KeyCode playerTwomoveBackwardKey;
     public KeyCode playerTworotateClockwiseKey;
@@ -101,6 +102,20 @@ public class PlayerController : Controller
         if (Input.GetKeyDown(shootKey))
         {
             pawn.Shoot();
+        }
+        if (Input.GetKeyDown(optionsKey))
+        {
+            if(GameManager.instance != null)
+            {
+                if(GameManager.instance.GamePlayScreenStateObject.activeSelf == true)
+                {
+                    GameManager.instance.DoOptionsState();
+                }
+                else
+                {
+                    GameManager.instance.ActivateGamePlayScreen();
+                }
+            }
         }
     }
     public override void AddToScore(float scoreToAdd)

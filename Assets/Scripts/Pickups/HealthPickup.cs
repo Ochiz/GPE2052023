@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthPickup : MonoBehaviour
+public class HealthPickup : Pickup
 {
     public HealthPowerup powerup;
     public AudioClip pickup;
@@ -18,7 +18,7 @@ public class HealthPickup : MonoBehaviour
     {
         
     }
-    public void OnTriggerEnter(Collider other)
+    public override void OnTriggerEnter(Collider other)
     {       
         PowerupManager powerupManager = other.GetComponent<PowerupManager>();
         sfxSource.PlayOneShot(pickup);
@@ -30,5 +30,9 @@ public class HealthPickup : MonoBehaviour
 
             GameManager.instance.level.totalPowerups -= 1;
         }
+    }
+    public override void RotateClockwise()
+    {
+        mover.Rotate(turnSpeed);
     }
 }

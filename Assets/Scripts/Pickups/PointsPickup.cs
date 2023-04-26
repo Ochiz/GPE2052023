@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class PointsPickup : MonoBehaviour
+public class PointsPickup : Pickup
 {
     public PointsPowerup powerup;
     public AudioClip pickup;
@@ -17,9 +17,9 @@ public class PointsPickup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        RotateClockwise();
     }
-    public void OnTriggerEnter(Collider other)
+    public override void OnTriggerEnter(Collider other)
     {
         sfxSource.PlayOneShot(pickup);
         PowerupManager powerupManager = other.GetComponent<PowerupManager>();
@@ -32,5 +32,9 @@ public class PointsPickup : MonoBehaviour
 
             GameManager.instance.level.totalPowerups -= 1;
         }
+    }
+    public override void RotateClockwise()
+    {
+        mover.Rotate(turnSpeed);
     }
 }
