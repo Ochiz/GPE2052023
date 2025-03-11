@@ -5829,8 +5829,8 @@ MonoBehaviour:
   - {fileID: 8423812398841796776, guid: 06aa0df741490a143a2d0c7d3689d710, type: 3}
   - {fileID: 3651526873486691753, guid: 5383b1030b9015f42ac7fe621d1797a8, type: 3}
   - {fileID: 121816, guid: 41d4243be8ad3a5409422171976de7ff, type: 3}
-  rows: 2
-  cols: 2
+  rows: 5
+  cols: 5
   roomWidth: 50
   roomHeight: 50
   mapSeed: 0
