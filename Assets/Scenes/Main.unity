@@ -7233,5 +7233,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: TitleScreen
       objectReference: {fileID: 0}
+    - target: {fileID: 6407778002794468156, guid: edef096dcbbd60a4689c1d5b7844ae53, type: 3}
+      propertyPath: m_text
+      value: Tankz
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: edef096dcbbd60a4689c1d5b7844ae53, type: 3}
